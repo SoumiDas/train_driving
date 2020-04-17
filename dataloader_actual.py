@@ -194,13 +194,13 @@ class CAL_Dataset(Dataset):
         self.transform = get_data_transforms(t)
 
         # load im paths and labels
-        df_all = pd.read_csv(root_dir + 'annotations_every30_new.csv')
+        df_all = pd.read_csv(root_dir + 'annot_small_seq.csv')
        # df_all = torch.tensor(df_all.values)
 
-        is_val = np.load(root_dir + 'is_val_new_30.npy')
+        is_val = np.load(root_dir + 'is_val_small.npy')
         #is_test = np.load(root_dir + 'is_test.npy')
 
-        is_train = np.load(root_dir + 'is_train_new_30.npy')
+        is_train = np.load(root_dir + 'is_train_small.npy')
 
         if t == 'train' :
             df = df_all[is_train]
@@ -237,7 +237,8 @@ class CAL_Dataset(Dataset):
         self.labels['speed_sign'] = torch.Tensor(onehot_modified(np.array(df['speed_sign']), [-1, 30, 60, 90]))
 
         # setup for sequence reading
-        self.start_idx = [0] + list(np.squeeze(np.where(np.diff(df.seq_id)) + np.array(1)))
+        #self.start_idx = [0] + list(np.squeeze(np.where(np.diff(df.seq_id)) + np.array(1)))
+        self.start_idx = [0,1]
         print('Start index')
         print(self.start_idx)
         #diff = a[n+1] - a[n]; where = check the condition, squeeze = reduce dimension
