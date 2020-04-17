@@ -1,3 +1,5 @@
+# Conditional Affordance Learning : https://arxiv.org/abs/1806.06498
+
 1. Please install the dependencies using environment.yml via anaconda3:
     <b> conda env create -f environment.yml </b>
 2. Once those are installed, activate the environment:
