@@ -16,14 +16,14 @@ def to_np(t):
 
 ### Losses
 
-def calc_class_weight(x, fac=2):
+'''def calc_class_weight(x, fac=2):
     """calculate inverse normalized count, multiply by given factor"""
     _, counts = np.unique(x, return_counts=True) #calculating the number of times unique itme appear in the array
     tmp = 1/counts/sum(counts) #calculating average
     tmp /= max(tmp)
     return tmp*fac
 
-'''def get_class_weights():
+def get_class_weights():
     # class weights, calculated on the training set
     df_all = pd.read_csv(data_path + 'annotations_2275.csv')
     return {
@@ -35,24 +35,24 @@ def calc_class_weight(x, fac=2):
        'veh_distance': torch.Tensor([1]),
     }'''
           
-WEIGHTS = {'red_light': torch.Tensor([1.2931, 2.0000]),
+'''WEIGHTS = {'red_light': torch.Tensor([1.2931, 2.0000]),
            'hazard_stop': torch.Tensor([0.0110, 2.0000]),
            'speed_sign': torch.Tensor([0.0039, 0.6667, 2.0000, 1.5714]),
            'relative_angle': torch.Tensor([1]),
            'center_distance': torch.Tensor([1]),
            'veh_distance': torch.Tensor([1]),
-          }
+          }'''
          
        
 
-#WEIGHTS = {
-#    'red_light': torch.Tensor([2.0000]),
-#    'hazard_stop': torch.Tensor([2.0000]),
-#    'speed_sign': torch.Tensor([2.0]),
-#    'relative_angle': torch.Tensor([1]),
-#    'center_distance': torch.Tensor([1]),
-#    'veh_distance': torch.Tensor([1]),
-#}
+WEIGHTS = {
+    'red_light': torch.Tensor([0.0001, 2.0000]),
+    'hazard_stop': torch.Tensor([0.0001, 2.0000]),
+    'speed_sign': torch.Tensor([0.0001, 2.000, 2.000, 2.000]),
+    'relative_angle': torch.Tensor([1]),
+    'center_distance': torch.Tensor([1]),
+    'veh_distance': torch.Tensor([1]),
+}
 
 
 def WCE(x, y, w):
