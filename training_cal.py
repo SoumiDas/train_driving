@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+import os
 import matplotlib.pyplot as plt
 from torch import optim
 
@@ -11,12 +12,14 @@ from train_actual import fit, custom_loss, validate
 from metrics_actual_changed import calc_metrics
 
 # paths
-data_path = '../Episodes/'
-data_path
+data_path = './'
+#data_path
 
-#train = np.load(data_path + 'is_train.npy')
-#val = np.load(data_path + 'is_val.npy')
-#test = np.load(data_path + 'is_test_6825.npy')
+if not os.path.exists('models'):
+	os.mkdir('models')
+
+if not os.path.exists('total_models'):
+	os.mkdir('total_models')
 
 
 params = {'name': 'model_train_try', 'type_': 'LSTM', 'lr': 1e-4, 'n_h': 100, 'p':0.44, 'seq_len':10}
