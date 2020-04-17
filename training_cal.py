@@ -12,7 +12,7 @@ from train_actual import fit, custom_loss, validate
 from metrics_actual_changed import calc_metrics
 
 # paths
-data_path = './'
+data_path = './Episodes/'
 #data_path
 
 if not os.path.exists('models'):
